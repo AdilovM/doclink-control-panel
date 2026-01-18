@@ -23,7 +23,7 @@ The goal is not to replace engineers—it is to amplify their leverage and prese
 
 # What this is (and is not)
 
-What this is
+## What this is
 
 A governed control plane for DocLink support and escalation operations
 
@@ -33,7 +33,7 @@ A decision-support system that asks the right questions at the right time
 
 An auditable interface for admin-only diagnostic actions
 
-What this is not
+## What this is not
 
 ❌ A free-form chatbot
 
@@ -47,7 +47,7 @@ What this is not
 
 DocLink Control Plane is designed under least privilege and explicit governance principles.
 
-Codebase Access
+## Codebase Access
 
 Read-only access to source repositories
 
@@ -55,7 +55,7 @@ No write, merge, or push capabilities
 
 All code references are cited by file path, commit hash, and line range
 
-Administrative Actions
+## Administrative Actions
 
 Admin-only capabilities (e.g., diagnostic builds) are:
 
@@ -67,7 +67,7 @@ Tied to a CRM case ID
 
 Executed in isolated build environments
 
-Diagnostic Builds
+## Diagnostic Builds
 
 Instrumentation is applied via temporary patch overlays
 
@@ -85,7 +85,7 @@ Instrumentation intent
 
 Artifact checksum
 
-Data Handling
+## Data Handling
 
 Customer data and logs are:
 
@@ -96,6 +96,7 @@ Scoped to the requesting case
 Never embedded or reused across tenants
 
 # User Personas & Permissions
+
 ## Tier 1 – Support Specialist
 
 Capabilities
@@ -131,3 +132,100 @@ Restrictions
 No code modification
 
 No build execution
+
+## Admin – Senior Engineer / Platform Owner
+
+Capabilities
+
+All Tier 2 permissions
+
+Request and generate diagnostic DLLs
+
+Select approved instrumentation targets
+
+Attach signed artifacts directly to CRM cases
+
+Review and approve generated patch overlays
+
+Restrictions
+
+No direct production deployment
+
+No persistent code changes
+
+# Diagnostic DLL Workflow
+
+Admin Diagnostic Build Flow
+
+Admin invokes Build Diagnostic Artifact
+
+Control Plane requires:
+
+CRM Case ID
+
+DocLink version / commit hash
+
+Instrumentation intent (from approved catalog or reviewed diff)
+
+System:
+
+Checks out clean source at specified commit
+
+Applies temporary instrumentation patch
+
+Builds DLL in isolated environment
+
+Signs and hashes artifact
+
+Artifact is:
+
+Stored with immutable metadata
+
+Linked to the CRM case
+
+Delivered with trace collection instructions
+
+Patch is discarded after build completion
+
+Result:
+Deep visibility into runtime behavior without production risk.
+
+# Architecture Overview
+
+High-level Architecture
+
+Knowledge Layer
+
+Canonical docs
+
+Resolved case learnings
+
+Version-aware embeddings
+
+Intelligence Layer
+
+Read-only code search (symbols, blame, flows)
+
+Case similarity engine
+
+Dynamic questionnaire logic
+
+Control Layer
+
+MCP-based tool orchestration
+
+Role-based action gating
+
+Audit logging
+
+Execution Layer (Admin only)
+
+Isolated build runners
+
+Artifact signing & storage
+
+CRM attachment workflows
+
+
+
+
